@@ -220,7 +220,9 @@ export function DataTable({
   } = useFetchData(staticData ? `${baseUrl}${queryString}` : null);
 
   const data = staticData ? staticData.data : responseData?.data || [];
-  const pagination = staticData ? staticData.pagination : responseData?.pagination || {};
+  const pagination = staticData?.pagination
+    ? staticData?.pagination
+    : responseData?.pagination || {};
 
   const table = useReactTable<Data>({
     data,
@@ -231,12 +233,12 @@ export function DataTable({
       rowSelection,
       columnFilters,
       pagination: {
-        pageIndex: pagination.pageNumber - 1,
-        pageSize: pagination.pageSize,
+        pageIndex: pagination?.pageNumber - 1,
+        pageSize: pagination?.pageSize,
       },
     },
     manualPagination: true,
-    pageCount: pagination.totalPages,
+    pageCount: pagination?.totalPages,
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
@@ -246,8 +248,8 @@ export function DataTable({
       const { pageIndex, pageSize } =
         typeof updater === "function"
           ? updater({
-              pageIndex: table.getState().pagination.pageIndex,
-              pageSize: table.getState().pagination.pageSize,
+              pageIndex: table.getState().pagination?.pageIndex,
+              pageSize: table.getState().pagination?.pageSize,
             })
           : updater;
       setPage(pageIndex + 1);

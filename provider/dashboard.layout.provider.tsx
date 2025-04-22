@@ -31,7 +31,7 @@ const DashBoardLayoutProvider = ({ children }: { children: React.ReactNode }) =>
 
         <div
           className={cn("content-wrapper transition-all duration-150 ", {
-            "xl:ml-[72px]": collapsed,
+            "xl:ml-[182px]": collapsed,
             "xl:ml-[272px]": !collapsed,
           })}
         >
@@ -41,7 +41,7 @@ const DashBoardLayoutProvider = ({ children }: { children: React.ReactNode }) =>
 
             )}
           >
-            <div className="semibox-content-wrapper ">
+            <div className="mx-4">
               <LayoutWrapper
                 isMobile={isMobile}
                 setOpen={setOpen}
@@ -93,12 +93,12 @@ const DashBoardLayoutProvider = ({ children }: { children: React.ReactNode }) =>
         <div
           className={cn("content-wrapper transition-all duration-150 ", {
             "xl:ml-[248px]": !collapsed,
-            "xl:ml-[72px]": collapsed,
+            "xl:ml-[82px]": collapsed,
           })}
         >
           <div
             className={cn(
-              "  pt-6 px-6 pb-8  page-min-height ",
+              "mx-4  pt-6 px-6 pb-8  page-min-height ",
               {}
             )}
           >
@@ -178,7 +178,7 @@ const LayoutWrapper = ({ children, isMobile, setOpen, open, location }: { childr
           duration: 0.5,
         }}
       >
-        <main className="px-6">{children}</main>
+        <main className="">{children}</main>
       </motion.div>
 
       <MobileSidebar className="left-[300px]" />

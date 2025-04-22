@@ -84,7 +84,7 @@ const Header = ({ handleOpenSearch }: { handleOpenSearch: () => void }) => {
           "sticky top-6": navbarType === "sticky",
         })}
       >
-        <div className="xl:mx-20 mx-4">
+        <div className="mx-4">
           <div className="w-full bg-card/90 backdrop-blur-lg md:px-6 px-[15px] py-3 rounded-md my-6 shadow-md border-b">
             <div className="flex justify-between items-center h-full">
               <VerticalHeader />

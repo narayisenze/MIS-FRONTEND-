@@ -1,104 +1,39 @@
 "use client";
-import UserForm from "@/components/forms/UserForm";
-import ModalDialog from "@/components/global/ModalDialog";
 import { DataTable } from "@/components/table";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { usersData } from "@/lib/data/users";
 import { Data } from "@/types/apiData";
 import { Icon } from "@iconify/react";
 import { ColumnDef } from "@tanstack/react-table";
-import React from "react";
-
-const data: Data = {
-  data: [
-    {
-      id: 1,
-      title: "Sacco Muhima",
-      email: "info@example.com",
-      department: "Technology",
-      organization: "AMIR",
-    },
-    {
-      id: 2,
-      title: "Sacco Muhima",
-      email: "info@example.com",
-      department: "Technology",
-      organization: "AMIR",
-    },
-    {
-      id: 3,
-      title: "Sacco Muhima",
-      email: "info@example.com",
-      department: "Technology",
-      organization: "AMIR",
-    },
-    {
-      id: 4,
-      title: "Sacco Muhima",
-      email: "info@example.com",
-      department: "Technology",
-      organization: "AMIR",
-    },
-    {
-      id: 5,
-      title: "Sacco Muhima",
-      email: "info@example.com",
-      department: "Technology",
-      organization: "AMIR",
-    },
-    {
-      id: 6,
-      title: "Sacco Muhima",
-      email: "info@example.com",
-      department: "Technology",
-      organization: "AMIR",
-    },
-    {
-      id: 7,
-      title: "Sacco Muhima",
-      email: "info@example.com",
-      department: "Technology",
-      organization: "AMIR",
-    },
-  ],
-  count: 7,
-  pagination: {
-    pageNumber: 1,
-    pageSize: 10,
-    sort: {
-      sorted: true,
-      unsorted: false,
-      empty: false,
-    },
-    paged: true,
-    unpaged: false,
-    last: true,
-    totalPages: 1,
-    totalElements: 7,
-    size: 10,
-    number: 0,
-    numberOfElements: 7,
-    first: true,
-    empty: false,
-  },
-};
+import { useRouter } from "next/navigation";
 
 const page = () => {
-  const [modalVisible, setModalVisible] = React.useState(false);
-  const [selectedUserId, setSelectedUserId] = React.useState<number | null>(
-    null
-  );
+  const router = useRouter();
   const breadcrumbs = [
     { label: "Dashboard", link: "/dashboard" },
     { label: "Users", link: "/users" },
   ];
   const columns: ColumnDef<Data>[] = [
     {
-      accessorKey: "title",
-      header: "Title",
+      accessorKey: "salutation",
+      header: "Salutation",
+    },
+    {
+      accessorKey: "firstName",
+      header: "First Name",
+    },
+    {
+      accessorKey: "lastName",
+      header: "Last Name",
     },
     {
       accessorKey: "email",
       header: "Email",
+    },
+    {
+      accessorKey: "phoneNumber",
+      header: "Phone",
     },
     {
       accessorKey: "department",
@@ -109,16 +44,34 @@ const page = () => {
       header: "Organization",
     },
     {
+      accessorKey: "isActive",
+      header: "Status",
+      cell: (row: Data) => {
+        const isActive = row.getValue("isActive");
+        return (
+          <>
+            <Badge variant="soft" color={isActive ? "success" : "warning"}>
+              {isActive ? "Active" : "Inactive"}
+            </Badge>
+          </>
+        );
+      },
+    },
+    {
       accessorKey: "id",
       header: "Actions",
       cell: ({ row }: { row: Data }) => {
         return (
           <div className="flex gap-3 items-center justify-end">
             <Button
-              onClick={() => {
-                setSelectedUserId(row.original.id);
-                handleModalToggle();
-              }}
+              size="icon"
+              color={row.original.isActive ? "warning" : "destructive"}
+              className="h-9 w-9 rounded"
+            >
+              <Icon icon="heroicons:power" className="w-5 h-5" />
+            </Button>
+            <Button
+              onClick={() => router.push("/users/" + row.original.id)}
               size="icon"
               color="info"
               className="h-9 w-9 rounded"
@@ -134,35 +87,20 @@ const page = () => {
     },
   ];
 
-  const handleModalToggle = () => {
-    setModalVisible(!modalVisible);
-  };
-
   return (
     <>
       <DataTable
         breadcrumbs={breadcrumbs}
-        title="Users"
+        title="User/AMIR Members"
         baseUrl="/users"
-        addButtonTitle="Add New User"
-        onAddButtonClick={() => {
-          setSelectedUserId(null);
-          handleModalToggle();
-        }}
+        addButtonTitle="Add New User/AMIR Member"
+        onAddButtonClick={() => router.push("/users/new")}
         columns={columns}
         enablePagination
         enableSearch
         enableExport
-        staticData={data}
+        staticData={usersData}
       />
-      <ModalDialog
-        title={`${selectedUserId ? "Update" : "Add New"} User`}
-        modalVisibility={modalVisible}
-        setModalVisibility={handleModalToggle}
-        size="3xl"
-      >
-        <UserForm toggleModal={handleModalToggle} />
-      </ModalDialog>
     </>
   );
 };

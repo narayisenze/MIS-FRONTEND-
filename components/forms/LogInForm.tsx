@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import FormField from "./components/FormField";
+import SiteLogo from "../global/SiteLogo";
 
 const LogInForm = () => {
   const router = useRouter();
@@ -13,12 +14,7 @@ const LogInForm = () => {
 
   return (
     <div className="w-full py-10">
-      <div className="2xl:mt-8 mt-6 2xl:text-3xl text-2xl font-bold text-default-900">
-        Hey, Hello 👋
-      </div>
-      <div className="2xl:text-lg text-base text-default-600 2xl:mt-2 leading-6">
-        Enter the information you entered while registering.
-      </div>
+      <SiteLogo />
       <form onSubmit={onSubmit} className="mt-5 2xl:mt-7 space-y-5">
         <FormField
           fieldType="input"

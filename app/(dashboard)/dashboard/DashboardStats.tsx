@@ -58,7 +58,7 @@ const TableStats: FC<Props> = ({ stats }) => {
                     "text-yellow-600": item.color === "info",
                   })}
                 >
-                  <span className="text-2xl font-semibold">
+                  <span className="text-xl font-semibold">
                     {item.quantity} {item.name}
                   </span>
                 </div>
@@ -66,7 +66,7 @@ const TableStats: FC<Props> = ({ stats }) => {
               <div className="mt-1.5">
                 <div className="flex items-center flex-wrap gap-1.5">
                   <span
-                    className={cn("text-sm font-medium flex items-center", {
+                    className={cn("text-xs font-medium flex items-center", {
                       "text-primary-600": item.color === "primary",
                       "text-green-600": item.color === "success",
                       "text-orange-600": item.color === "warning",

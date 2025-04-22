@@ -14,8 +14,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const ProfileInfo = () => {
+  const router = useRouter();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className=" cursor-pointer">
@@ -73,7 +75,7 @@ const ProfileInfo = () => {
         </DropdownMenuGroup>
         <DropdownMenuSeparator className="mb-0 dark:bg-background" />
         <DropdownMenuItem
-          // onSelect={() => clearAuthToken()}
+          onSelect={() => router.push("/")}
           className="flex items-center gap-2 text-sm font-medium text-default-600 capitalize my-1 px-3 dark:hover:bg-background cursor-pointer"
         >
           <Icon icon="heroicons:power" className="w-4 h-4" />

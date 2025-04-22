@@ -46,10 +46,10 @@ const page = () => {
         </CardContent>
       </Card>
       <div className="grid grid-cols-12  gap-6 h-max">
-        <div className="col-span-12 lg:col-span-8">
+        <div className="col-span-12 lg:col-span-6">
           <PortfolioReport />
         </div>
-        <div className="col-span-12 lg:col-span-4 h-full">
+        <div className="col-span-12 lg:col-span-6 h-full">
           <Card className="h-full">
             <CardHeader className="border-none p-6 pt-5 mb-0">
               <CardTitle className="text-lg font-semibold text-default-900 p-0">

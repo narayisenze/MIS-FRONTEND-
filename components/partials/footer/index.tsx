@@ -25,7 +25,7 @@ const Footer = ({ handleOpenSearch }: { handleOpenSearch: () => void }) => {
 
   if (layout === "semibox") {
     return (
-      <div className="xl:mx-20 mx-6 my-3">
+      <div className="mx-4 my-3">
         <FooterLayout
           className={cn(" rounded-md border", {
             "xl:ml-[72px]": collapsed,
@@ -41,6 +41,7 @@ const Footer = ({ handleOpenSearch }: { handleOpenSearch: () => void }) => {
 
   if (sidebarType !== "module" && layout !== "horizontal") {
     return (
+      
       <FooterLayout
         className={cn("", {
           "xl:ml-[248px]": !collapsed,

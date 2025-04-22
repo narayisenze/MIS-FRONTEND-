@@ -3,28 +3,30 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import FormField from "./components/FormField";
 import { GroupBase, OptionsOrGroups } from "react-select";
+import { useRouter } from "next/navigation";
 
 interface PartnerFormProps {
-  toggleModal: () => void;
+  partnerId?: string | number;
 }
 
-const userTypeOptions = [
-  { value: "premium", label: "Premium" },
-  { value: "standard", label: "Standard" },
-  { value: "basic", label: "Basic" },
+const memberTypeOptions = [
+  { value: "sacco", label: "SACCO/MFI" },
+  { value: "bank", label: "Bank" },
+  { value: "limited_company", label: "Limited Company" },
+  { value: "other", label: "Other Partners" },
 ];
 
 const businessCategoryOptions = [
-  { value: "financial", label: "Financial Services" },
-  { value: "technology", label: "Technology" },
-  { value: "retail", label: "Retail" },
-  { value: "manufacturing", label: "Manufacturing" },
+  { value: "financial_services", label: "Financial Services" },
+  { value: "financing", label: "Financing" },
+  { value: "capacity", label: "Capacity" },
 ];
 
-const PartnerForm = ({ toggleModal }: PartnerFormProps) => {
+const PartnerForm = ({ partnerId }: PartnerFormProps) => {
+  const router = useRouter();
   const onSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    toggleModal();
+    router.push("/partners");
   };
 
   return (
@@ -46,20 +48,21 @@ const PartnerForm = ({ toggleModal }: PartnerFormProps) => {
         />
         <FormField
           fieldType="input"
-          id="certificateRegistrationNumber"
+          id="registrationNumber"
           label="Certificate Registration Number"
           inputType="text"
-          placeholder="Enter registration number"
+          placeholder="Enter registration number (RDB, RCA, RGB)"
         />
         <FormField
           fieldType="select"
-          id="userType"
-          label="User Type"
-          placeholder="Select user type"
+          id="memberType"
+          label="Member Based Type"
+          placeholder="Select member type"
           selectItems={
-            userTypeOptions as unknown as
-              | OptionsOrGroups<string, GroupBase<string>>
-              | undefined
+            memberTypeOptions as unknown as OptionsOrGroups<
+              string,
+              GroupBase<string>
+            >
           }
         />
         <FormField
@@ -67,19 +70,25 @@ const PartnerForm = ({ toggleModal }: PartnerFormProps) => {
           id="numberOfCustomers"
           label="Number of Customers"
           inputType="number"
-          placeholder="Enter number of customers"
+          placeholder="Enter number of AMIR members"
+        />
+        <FormField
+          fieldType="date"
+          id="entryDate"
+          label="Entry Date"
+          placeholder="Select entry date"
         />
         <FormField
           fieldType="input"
-          id="phoneNumber"
-          label="Phone Number"
+          id="mobilePhone"
+          label="Mobile Phone Number"
           inputType="tel"
-          placeholder="Enter phone number"
+          placeholder="Enter mobile phone number"
         />
         <FormField
           fieldType="input"
           id="email"
-          label="Email Address"
+          label="Email"
           inputType="email"
           placeholder="Enter email address"
         />
@@ -92,10 +101,31 @@ const PartnerForm = ({ toggleModal }: PartnerFormProps) => {
         />
         <FormField
           fieldType="input"
-          id="address"
-          label="Address"
+          id="province"
+          label="Province"
           inputType="text"
-          placeholder="Enter address"
+          placeholder="Enter province"
+        />
+        <FormField
+          fieldType="input"
+          id="district"
+          label="District"
+          inputType="text"
+          placeholder="Enter district"
+        />
+        <FormField
+          fieldType="input"
+          id="sector"
+          label="Sector"
+          inputType="text"
+          placeholder="Enter sector"
+        />
+        <FormField
+          fieldType="input"
+          id="cell"
+          label="Cell"
+          inputType="text"
+          placeholder="Enter cell"
         />
         <FormField
           fieldType="select"
@@ -103,14 +133,17 @@ const PartnerForm = ({ toggleModal }: PartnerFormProps) => {
           label="Business Category"
           placeholder="Select business category"
           selectItems={
-            businessCategoryOptions as unknown as
-              | OptionsOrGroups<string, GroupBase<string>>
-              | undefined
+            businessCategoryOptions as unknown as OptionsOrGroups<
+              string,
+              GroupBase<string>
+            >
           }
         />
       </div>
       <div className="pt-5 flex justify-end">
-        <Button type="submit">Save Information</Button>
+        <Button type="submit">
+          {partnerId ? "Update Information" : "Save Information"}
+        </Button>
       </div>
     </form>
   );

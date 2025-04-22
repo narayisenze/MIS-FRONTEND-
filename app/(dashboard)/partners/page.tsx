@@ -7,111 +7,11 @@ import { Data } from "@/types/apiData";
 import { Icon } from "@iconify/react";
 import { ColumnDef } from "@tanstack/react-table";
 import React from "react";
-
-const data: Data = {
-  data: [
-    {
-      id: 1,
-      memberName: "Partner One",
-      tin: "123456789",
-      certificateRegistrationNumber: "REG123",
-      userType: "Premium",
-      numberOfCustomers: 150,
-      phoneNumber: "+250789123456",
-      email: "partner1@example.com",
-      poBox: "1234",
-      address: "Kigali, Rwanda",
-      businessCategory: "Financial Services",
-    },
-    {
-      id: 2,
-      memberName: "Partner Two",
-      tin: "123456789",
-      certificateRegistrationNumber: "REG123",
-      userType: "Premium",
-      numberOfCustomers: 150,
-      phoneNumber: "+250789123456",
-      email: "partner1@example.com",
-      poBox: "1234",
-      address: "Kigali, Rwanda",
-      businessCategory: "Financial Services",
-    },
-    {
-      id: 3,
-      memberName: "Partner Three",
-      tin: "123456789",
-      certificateRegistrationNumber: "REG123",
-      userType: "Premium",
-      numberOfCustomers: 150,
-      phoneNumber: "+250789123456",
-      email: "partner1@example.com",
-      poBox: "1234",
-      address: "Kigali, Rwanda",
-      businessCategory: "Financial Services",
-    },
-    {
-      id: 4,
-      memberName: "Partner Four",
-      tin: "123456789",
-      certificateRegistrationNumber: "REG123",
-      userType: "Premium",
-      numberOfCustomers: 150,
-      phoneNumber: "+250789123456",
-      email: "partner1@example.com",
-      poBox: "1234",
-      address: "Kigali, Rwanda",
-      businessCategory: "Financial Services",
-    },
-    {
-      id: 5,
-      memberName: "Partner Five",
-      tin: "123456789",
-      certificateRegistrationNumber: "REG123",
-      userType: "Premium",
-      numberOfCustomers: 150,
-      phoneNumber: "+250789123456",
-      email: "partner1@example.com",
-      poBox: "1234",
-      address: "Kigali, Rwanda",
-      businessCategory: "Financial Services",
-    },
-    {
-      id: 6,
-      memberName: "Partner Six",
-      tin: "123456789",
-      certificateRegistrationNumber: "REG123",
-      userType: "Premium",
-      numberOfCustomers: 150,
-      phoneNumber: "+250789123456",
-      email: "partner1@example.com",
-      poBox: "1234",
-      address: "Kigali, Rwanda",
-      businessCategory: "Financial Services",
-    },
-  ],
-  count: 1,
-  pagination: {
-    pageNumber: 1,
-    pageSize: 10,
-    sort: { sorted: true, unsorted: false, empty: false },
-    paged: true,
-    unpaged: false,
-    last: true,
-    totalPages: 1,
-    totalElements: 1,
-    size: 10,
-    number: 0,
-    numberOfElements: 1,
-    first: true,
-    empty: false,
-  },
-};
+import { partnersData } from "@/lib/data/partners";
+import { useRouter } from "next/navigation";
 
 const PartnersPage = () => {
-  const [modalVisible, setModalVisible] = React.useState(false);
-  const [selectedPartnerId, setSelectedPartnerId] = React.useState<
-    number | null
-  >(null);
+  const router = useRouter();
 
   const breadcrumbs = [
     { label: "Dashboard", link: "/dashboard" },
@@ -136,10 +36,7 @@ const PartnersPage = () => {
       cell: ({ row }) => (
         <div className="flex gap-3 items-center justify-end">
           <Button
-            onClick={() => {
-              setSelectedPartnerId(row.original.id);
-              handleModalToggle();
-            }}
+            onClick={() => router.push("/partners/" + row.original.id)}
             size="icon"
             color="info"
             className="h-9 w-9 rounded"
@@ -154,8 +51,6 @@ const PartnersPage = () => {
     },
   ];
 
-  const handleModalToggle = () => setModalVisible(!modalVisible);
-
   return (
     <>
       <DataTable
@@ -163,24 +58,13 @@ const PartnersPage = () => {
         title="Partners"
         baseUrl="/partners"
         addButtonTitle="Add New Partner"
-        onAddButtonClick={() => {
-          setSelectedPartnerId(null);
-          handleModalToggle();
-        }}
+        onAddButtonClick={() => router.push("/partners/new")}
         columns={columns}
         enablePagination
         enableSearch
-        enableExport
-        staticData={data}
+        staticData={partnersData}
+        enableExport={true}
       />
-      <ModalDialog
-        title={`${selectedPartnerId ? "Update" : "Add New"} Partner`}
-        modalVisibility={modalVisible}
-        setModalVisibility={handleModalToggle}
-        size="3xl"
-      >
-        <PartnerForm toggleModal={handleModalToggle} />
-      </ModalDialog>
     </>
   );
 };

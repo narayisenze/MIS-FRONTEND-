@@ -64,20 +64,34 @@ export const menusConfig = {
         href: "/dashboard",
       },
       {
-        title: "User Management",
+        title: "Member Management",
         icon: User,
         href: "",
         child: [
           {
-            title: "Users",
+            title: "User/AMIR Members",
             href: "/users",
           },
           {
-            title: "Partners",
+            title: "Our Partners",
             href: "/partners",
+          },
+          {
+            title: "Membership Recovery",
+            href: "/membership-recovery",
           },
         ],
       },
+      {
+        title: "Complaints & Feedbacks",
+        icon: Messages,
+        href: "/feedbacks",
+      },
+      {
+        title: "Digital Facts Sheet",
+        icon: Files,
+        href: "/digital-facts-sheet",
+      }
     ],
   },
 };
