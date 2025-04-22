@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import image from "@/public/images/all-img/man-with-laptop.png";
 import Image from "next/image";
 export default function MainMenu() {
-  const menus = menusConfig.mainNav || [];
+  const menus: any[] =  [];
 
   const [offset, setOffset] = React.useState<number | null>(null);
   const [list, setList] = React.useState<HTMLUListElement | null | undefined>();
