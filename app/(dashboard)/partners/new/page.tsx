@@ -13,15 +13,15 @@ const page = () => {
           <Link href={"/dashboard"}>Dashboard</Link>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <Link href={"/partners"}>Partners</Link>
+          <Link href={"/partners"}>Members</Link>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <Link href={"/users/new"}>Add New Partner</Link>
+          <Link href={"/users/new"}>Add New Member</Link>
         </BreadcrumbItem>
       </Breadcrumbs>
       <div className="my-5 px-3">
         <h3 className="text-3xl text-primary font-semibold">
-          Add New Partner
+          Add New Member
         </h3>
       </div>
       <Card className="mt-6">

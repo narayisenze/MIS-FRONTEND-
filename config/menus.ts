@@ -69,11 +69,7 @@ export const menusConfig = {
         href: "",
         child: [
           {
-            title: "User/AMIR Members",
-            href: "/users",
-          },
-          {
-            title: "Our Partners",
+            title: "Members",
             href: "/partners",
           },
           {
@@ -91,7 +87,18 @@ export const menusConfig = {
         title: "Digital Facts Sheet",
         icon: Files,
         href: "/digital-facts-sheet",
-      }
+      },
+      {
+        title: "System Administration",
+        icon: User,
+        href: "",
+        child: [
+          {
+            title: "Users",
+            href: "/users",
+          },
+        ],
+      },
     ],
   },
 };

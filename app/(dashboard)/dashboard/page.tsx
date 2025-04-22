@@ -13,7 +13,7 @@ const page = () => {
   return (
     <div className="space-y-6 pb-5">
       <div className="px-3">
-        <h3 className="text-3xl font-semibold">Hi Snave 👋, Welcome to AMIR</h3>
+        <h3 className="text-3xl font-semibold">Hi Aristote 👋, Welcome to AMIR</h3>
       </div>
       <Card className="">
         <CardContent className="pt-6 px-6">

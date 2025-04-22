@@ -15,7 +15,7 @@ const PartnersPage = () => {
 
   const breadcrumbs = [
     { label: "Dashboard", link: "/dashboard" },
-    { label: "Partners", link: "/partners" },
+    { label: "Members", link: "/partners" },
   ];
 
   const columns: ColumnDef<Data>[] = [
@@ -55,9 +55,9 @@ const PartnersPage = () => {
     <>
       <DataTable
         breadcrumbs={breadcrumbs}
-        title="Partners"
+        title="Members"
         baseUrl="/partners"
-        addButtonTitle="Add New Partner"
+        addButtonTitle="Add New Member"
         onAddButtonClick={() => router.push("/partners/new")}
         columns={columns}
         enablePagination

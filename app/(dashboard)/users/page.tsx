@@ -91,9 +91,9 @@ const page = () => {
     <>
       <DataTable
         breadcrumbs={breadcrumbs}
-        title="User/AMIR Members"
+        title="Users"
         baseUrl="/users"
-        addButtonTitle="Add New User/AMIR Member"
+        addButtonTitle="Add New User"
         onAddButtonClick={() => router.push("/users/new")}
         columns={columns}
         enablePagination

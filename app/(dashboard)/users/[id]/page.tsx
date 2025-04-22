@@ -19,15 +19,15 @@ const UpdatePaymentVoucher = ({ params }: Props) => {
           <Link href={"/dashboard"}>Dashboard</Link>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <Link href={"/users"}>User/AMIR Members</Link>
+          <Link href={"/users"}>Users</Link>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <Link href={`/users/${userId}`}>Update User/AMIR Member</Link>
+          <Link href={`/users/${userId}`}>Update User</Link>
         </BreadcrumbItem>
       </Breadcrumbs>
       <div className="my-5">
         <h3 className="text-3xl text-primary font-semibold">
-          Update User/AMIR Member
+          Update User
         </h3>
       </div>
       <Card className="mt-6">
