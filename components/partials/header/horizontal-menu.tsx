@@ -1,12 +1,9 @@
-import React from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import { menusConfig } from "@/config/menus";
-import { cn, translate } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import image from "@/public/images/all-img/man-with-laptop.png";
-import Image from "next/image";
+import React from "react";
 export default function MainMenu() {
   const menus: any[] =  [];
 
@@ -124,21 +121,6 @@ export default function MainMenu() {
                                 childItem={megaChild}
                               />
                             ))}
-                          </div>
-                          <div
-                            className={cn("col-span-4 ", {
-                              "col-span-7 ": tab?.child?.length < 10,
-                            })}
-                          >
-                            <div className="h-full w-full  text-center">
-                              <Image
-                                src={image}
-                                alt=""
-                                objectFit="cover"
-                                height={100}
-                                width={100}
-                              />
-                            </div>
                           </div>
                         </TabsContent>
                       ))}
